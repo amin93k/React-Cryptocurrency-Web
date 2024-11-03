@@ -2,4 +2,20 @@
 .layout {
     min-height: 100vh;
     flex-direction: column;
+    overflow-y: auto;
 }
+
+.sider {
+    overflow: 'auto',
+    height: '100vh',
+    position: 'sticky',
+    insetInlineStart: 0,
+    top: 0,
+    bottom: 0,
+    scrollbarWidth: 'thin',
+    scrollbarGutter: 'stable',
+  }
+
+  .content {
+    margin: 0.5rem 1rem;
+  }

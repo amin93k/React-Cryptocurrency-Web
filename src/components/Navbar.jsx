@@ -1,13 +1,15 @@
 import React from 'react'
 import { Menu, Button, Typography, Avatar } from "antd"
 import { MenuOutlined, HomeOutlined, MoneyCollectOutlined, FundOutlined, BulbOutlined, BoldOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 function Navbar() {
+    const {pathname} = useLocation()
+
     const menuItems = [
         {
             icon: <HomeOutlined />,
-            key: 'home',
+            key: '/',
             label:
                 <Link to='/'>
                     Home
@@ -15,7 +17,7 @@ function Navbar() {
         },
         {
             icon: <FundOutlined />,
-            key: 'cryptocurrencies',
+            key: '/cryptocurrencies',
             label:
                 <Link to='/cryptocurrencies'>
                     Cryptocurrencies
@@ -23,7 +25,7 @@ function Navbar() {
         },
         {
             icon: <MoneyCollectOutlined />,
-            key: 'exchanges',
+            key: '/exchanges',
             label:
                 <Link to='/exchanges'>
                     Exchanges
@@ -31,7 +33,7 @@ function Navbar() {
         },
         {
             icon: <BoldOutlined />,
-            key: 'news',
+            key: '/news',
             label:
                 <Link to='/news'>
                     News
@@ -41,20 +43,23 @@ function Navbar() {
 
     return (
         <>
-            <div>
-                <Avatar src='./src/images/logo.png' size={50} />
-                <Typography.Title level={2}>
-                    <Link to='/'>
+            <div style={{marginTop: 5}}>
+                <Link to='/'>
+                    <Avatar src='./src/images/logo.png' size={50} />
+                    <Typography.Title 
+                    level={5}
+                        style={{color: "white", display: "inline"}}
+                        >
                         Crypto Land
-                    </Link>
-                </Typography.Title>
+                    </Typography.Title>
+                </Link>
             </div>
             <div>
                 <Menu
                     theme='dark'
                     items={menuItems}
                     mode='inline'
-                    selectedKeys={["home"]}
+                    selectedKeys={[pathname]}
                 />
 
 

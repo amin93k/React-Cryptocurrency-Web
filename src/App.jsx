@@ -9,20 +9,23 @@ function App() {
     const router = useRoutes(routes)
     const { Header, Content, Footer, Sider } = Layout;
 
+
     return (
         <Layout className='layout'>
-            <Sider >
+            <Sider className='sider'>
                 <Navbar />
             </Sider>
-            
+
             <Layout>
-                <Content>
+
+                <Content className='content'>
                     {router}
                 </Content>
 
                 <Footer>
                     footer
                 </Footer>
+                
             </Layout>
         </Layout>
     )

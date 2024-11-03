@@ -4,7 +4,7 @@ import {HomePage, Cryptocurrencies, News, Exchange, CryptoDetails} from "./compo
 const routes = [
     {
         path: "/",
-        elements: <HomePage />
+        element: <HomePage />
     },
     {
         path: "/cryptocurrencies",
