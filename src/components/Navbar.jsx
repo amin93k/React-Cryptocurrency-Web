@@ -1,6 +1,6 @@
 import React from 'react'
-import { Menu, Button, Typography, Avatar } from "antd"
-import { MenuOutlined, HomeOutlined, MoneyCollectOutlined, FundOutlined, BulbOutlined, BoldOutlined } from '@ant-design/icons'
+import { Menu, Button, Typography, Avatar, Flex } from "antd"
+import { SunOutlined, HomeOutlined, MoneyCollectOutlined, FundOutlined, BulbOutlined, BoldOutlined, MoonOutlined } from '@ant-design/icons'
 import { Link, useLocation } from 'react-router-dom'
 
 function Navbar() {
@@ -42,13 +42,13 @@ function Navbar() {
     ]
 
     return (
-        <>
-            <div style={{marginTop: 5}}>
+        <Flex justify='space-between' >
+            <div>
                 <Link to='/'>
                     <Avatar src='./src/images/logo.png' size={50} />
                     <Typography.Title 
                     level={5}
-                        style={{color: "white", display: "inline"}}
+                        style={{display: "inline"}}
                         >
                         Crypto Land
                     </Typography.Title>
@@ -56,15 +56,13 @@ function Navbar() {
             </div>
             <div>
                 <Menu
-                    theme='dark'
                     items={menuItems}
-                    mode='inline'
+                    mode='horizontal'
                     selectedKeys={[pathname]}
                 />
-
-
             </div>
-        </>
+            <MoonOutlined style={{fontSize: 20}}/>
+        </Flex>
     )
 }
 

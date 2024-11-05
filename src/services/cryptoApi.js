@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = "https://min-api.cryptocompare.com/data";
+const baseUrl = "https://min-api.cryptocompare.com/data/";
 
 export const cryptoApiSlice = createApi({
     reducerPath: "cryptoApi",

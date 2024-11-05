@@ -1,21 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
-.layout {
-    min-height: 100vh;
-    flex-direction: column;
-    overflow-y: auto;
+.body {
+  font-family: "DM Sans", sans-serif;
 }
 
-.sider {
-    overflow: 'auto',
-    height: '100vh',
-    position: 'sticky',
-    insetInlineStart: 0,
-    top: 0,
-    bottom: 0,
-    scrollbarWidth: 'thin',
-    scrollbarGutter: 'stable',
-  }
+.layout {
+  min-height: 100vh;
+  flex-direction: column;
+  overflow-y: auto;
+}
 
-  .content {
-    margin: 0.5rem 1rem;
-  }
+.content {
+  padding-inline: 50px;
+  padding-block: 1rem;
+}

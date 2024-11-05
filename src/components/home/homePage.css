@@ -1,0 +1,38 @@
+.head-wrapper {
+    padding-block: 2rem;
+}
+
+.head__title {
+    position: relative;
+    z-index: 10;
+    flex-basis: 40%;
+}
+
+.head__title--areola {
+    position: absolute;
+    width: 490px;
+    height: 214px;
+    left: 6px;
+    top: -50px;
+    z-index: -10;
+    background: linear-gradient(104.49deg, rgba(249, 223, 173, 0.72) 13.73%, #D2C6E4 82.96%);
+    filter: blur(60px);
+    border-radius: 98.5px;
+}
+
+.head__image {
+    position: relative;
+    z-index: 10;
+}
+
+.head__image--areola {
+    position: absolute;
+    width: 314px;
+    height: 269px;
+    left: 75px;
+    top: 55px;
+    z-index: -10;
+    background: rgba(255, 224, 152, 0.8);
+    filter: blur(90px);
+    border-radius: 69px;
+}
