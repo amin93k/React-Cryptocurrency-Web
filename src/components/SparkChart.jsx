@@ -1,40 +1,52 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useGetCryptoQuery } from '../services/cryptoApi';
+import { Spin } from 'antd';
 
-function SparkChart({ coinName, isPriceIncrease }) {
+function SparkChart({ coinName, limit: dataLength }) {
     const params = {
         fsym: coinName,
         tsym: 'USD',
-        limit: 24
+        limit: dataLength - 1
     }
 
     const url = "v2/histohour"
 
-    const { data, error, isLoading } = useGetCryptoQuery({ url, params });
+    const { data: coinData, error, isLoading } = useGetCryptoQuery({ url, params });
 
     if (isLoading) {
         return <p>Loading...</p>;
     }
 
     if (error) {
-        return <p>Error loading data.</p>;
+        return <Spin />;
     }
 
-    let dataMin = data?.Data.Data[0].close
-    let dataMax = data?.Data.Data[0].close
+    const convertTimestamp = (timestamp) => {
+        // Convert to milliseconds  
+        const date = new Date(timestamp * 1000)
+        return date.toLocaleString('en-US',
+            { hour: '2-digit', minute: '2-digit', hour12: false })
+    }
 
-    const chartData = data?.Data.Data.map(hourPrice => {
-        const closePrice = hourPrice.close
-        if (closePrice > dataMax) {
-            dataMax = closePrice
+    const isPriceIncrease = (coinData?.Data.Data[dataLength - 1].close - coinData?.Data.Data[0].close) > 0
+
+    let dataMinPrice = coinData?.Data.Data[0].close
+    let dataMaxPrice = coinData?.Data.Data[0].close
+
+    const chartData = coinData?.Data.Data.map(hourData => {
+        const closePrice = hourData.close
+        if (closePrice > dataMaxPrice) {
+            dataMaxPrice = closePrice
         }
-        if (closePrice < dataMin) {
-            dataMin = closePrice
+        if (closePrice < dataMinPrice) {
+            dataMinPrice = closePrice
         }
-        return { "Close Price": closePrice }
+        return {
+            "time": convertTimestamp(hourData.time),
+            "$": closePrice
+        }
     });
-
 
     return (
         <ResponsiveContainer width="100%" height={40}>
@@ -43,7 +55,7 @@ function SparkChart({ coinName, isPriceIncrease }) {
                 margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
                 <defs>
-                    
+
                     <linearGradient id="positiveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" style={{ stopColor: '#82ca9d', stopOpacity: 1 }} />
                         <stop offset="100%" style={{ stopColor: '#d0f0c0', stopOpacity: 1 }} />
@@ -54,12 +66,15 @@ function SparkChart({ coinName, isPriceIncrease }) {
                         <stop offset="100%" style={{ stopColor: '#ffaaaa', stopOpacity: 1 }} />
                     </linearGradient>
                 </defs>
-                <XAxis hide />
-                <YAxis hide domain={[dataMin, dataMax]} />
-                <Tooltip />
+                <XAxis hide dataKey='time' />
+                <YAxis hide domain={[dataMinPrice, dataMaxPrice]} />
+                <Tooltip
+                    itemStyle={{ color: '#000' }}
+                    separator=''
+                />
                 <Area
                     type="monotone"
-                    dataKey="Close Price"
+                    dataKey="$"
                     stroke={isPriceIncrease ? '#82ca9d' : '#ff7373'}
                     fill={isPriceIncrease ? 'url(#positiveGradient)' : 'url(#negativeGradient)'}
                     strokeWidth={2}

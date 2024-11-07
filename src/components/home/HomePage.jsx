@@ -3,6 +3,8 @@ import { useGetCryptoQuery } from '../../services/cryptoApi'
 import HomeHead from './HomeHead';
 import './homePage.css'
 import PopularCoins from './PopularCoins';
+import { Spin } from 'antd';
+import TrendCoinsTable from './TrendCoinsTable';
 
 
 function HomePage() {
@@ -14,15 +16,16 @@ function HomePage() {
     const url = 'top/totalvolfull'
     const { data, error, isLoading } = useGetCryptoQuery({ url, params })
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <Spin size='large' fullscreen={true}/>;
     if (error) return <div>Error fetching data</div>;
     console.log(data)
     return (
         <div>
             <HomeHead />
 
-            <PopularCoins coins={data.Data.slice(0, 3)} isLoading={isLoading}/>
+            <PopularCoins coins={data.Data.slice(0, 4)}/>
             
+            <TrendCoinsTable coins={data.Data}/>
         </div>
     )
 }
