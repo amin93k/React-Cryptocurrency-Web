@@ -1,7 +1,8 @@
-import { Avatar, Flex, Space, Table, Typography } from 'antd'
 import React from 'react'
+import { Table, Space, Avatar } from 'antd'
+import SparkChart from './SparkChart'
 
-function TrendCoinsTable({ coins }) {
+function CoinsTable({coins}) {
 
     const coinsSource = coins.map((coin, index) => {
 
@@ -16,13 +17,10 @@ function TrendCoinsTable({ coins }) {
                 imageUrl: `https://www.cryptocompare.com/${coinInfo.ImageUrl}`
             },
             price: coinMarketInfo?.PRICE || '_',
-            change24H: coinMarketInfo?.CHANGEPCT24HOUR || '_',
+            change24H: coinMarketInfo?.CHANGEPCT24HOUR || null,
             TotalVolume24H: coinMarketInfo?.TOTALVOLUME24HTO || '_',
             marketCap: coinMarketInfo?.MKTCAP || '_',
-            chart: {
-                coinName: coinInfo.Name,
-                limit: 7
-            }
+            chartInfo: coinInfo.Name
         }
     })
 
@@ -56,48 +54,56 @@ function TrendCoinsTable({ coins }) {
             dataIndex: 'change24H',
             key: 'change24H',
             render: (changePtc24H) => {
-                const color = changePtc24H[0] === "-" ? "#f5222d" : "#52c41a"
 
-                return (
-                    <span style={{color: color }}>
-                        {changePtc24H} %
-                    </span>
-                )
+                if (changePtc24H === null) {
+                    return <span>-</span>
+                }
+                else {
+                    const color = changePtc24H[0] === '-' ? "#f5222d" : "#52c41a"
+                    return (
+                        <span style={{ color: color }}>
+                            {changePtc24H} %
+                        </span>
+                    )
+                }
             }
         },
         {
             title: 'Total Vol',
             dataIndex: 'TotalVolume24H',
-            key: 'TotalVolume24H',
+            key: 'TotalVolume24H'
         },
         {
             title: 'Market Cap',
             dataIndex: 'marketCap',
-            key: 'marketCap',
+            key: 'marketCap'
         },
         {
-            title: 'Last 7 Days',
-            dataIndex: 'chart',
+            title: 'Last 3 Days',
+            dataIndex: 'chartInfo',
             key: 'chart',
+            width: '200px',
+            render: (coinName) => {
+                return (
+                    <SparkChart
+                        coinName={coinName}
+                        getType='hour'
+                        dataLength={72}
+                    />
+                )
+            }
         }
     ]
 
     return (
-        <div>
-            <Flex align='center' justify='space-between'>
-                <Typography.Title level={2} style={{ marginBottom: 0, marginTop: 80 }}>
-                    Market Trend
-                </Typography.Title>
-                {/* button */}
-            </Flex>
-            <Table
-                columns={columns}
-                dataSource={coinsSource}
-                pagination={false}
-                className='trend-table'
-            />
-        </div>
+        <Table
+            columns={columns}
+            dataSource={coinsSource}
+            pagination={false}
+            className='trend-table'
+            scroll={{ x: 'max-content' }}
+        />
     )
 }
 
-export default TrendCoinsTable
+export default CoinsTable

@@ -3,23 +3,23 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { useGetCryptoQuery } from '../services/cryptoApi';
 import { Spin } from 'antd';
 
-function SparkChart({ coinName, limit: dataLength }) {
+function SparkChart({ coinName, getType, dataLength }) {
     const params = {
         fsym: coinName,
         tsym: 'USD',
         limit: dataLength - 1
     }
 
-    const url = "v2/histohour"
+    const url = `v2/histo${getType}`
 
     const { data: coinData, error, isLoading } = useGetCryptoQuery({ url, params });
 
     if (isLoading) {
-        return <p>Loading...</p>;
+        return <Spin />;
     }
 
     if (error) {
-        return <Spin />;
+        return <span >Opps ocurred error!</span>;
     }
 
     const convertTimestamp = (timestamp) => {

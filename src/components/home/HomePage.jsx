@@ -4,7 +4,7 @@ import HomeHead from './HomeHead';
 import './homePage.css'
 import PopularCoins from './PopularCoins';
 import { Spin } from 'antd';
-import TrendCoinsTable from './TrendCoinsTable';
+import TrendCoinsTable from './TrendCoins';
 
 
 function HomePage() {

@@ -42,8 +42,8 @@ function PopularCoins({ coins }) {
 
                             <SparkChart
                                 coinName={coin.CoinInfo.Name}
-                                limit={24}
-                                isPriceIncrease={isPriceIncrease}
+                                getType='hour'
+                                dataLength={24}
                             />
                         </Card>
                     </Col>

@@ -14,3 +14,11 @@
   padding-inline: 50px;
   padding-block: 1rem;
 }
+
+.link {
+  color: #54c880
+}
+
+.link:hover {
+  color: #6de39a
+}

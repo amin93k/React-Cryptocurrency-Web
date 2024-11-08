@@ -1,11 +1,15 @@
 import React from 'react'
-import { Menu, Button, Typography, Avatar, Flex } from "antd"
-import { SunOutlined, HomeOutlined, MoneyCollectOutlined, FundOutlined, BulbOutlined, BoldOutlined, MoonOutlined } from '@ant-design/icons'
+import { Menu, Typography, Avatar, Flex } from "antd"
+import { HomeOutlined, MoneyCollectOutlined, FundOutlined, BoldOutlined, MoonOutlined, SunOutlined, } from '@ant-design/icons'
 import { Link, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeTheme } from '../redux/themeSlice'
 
 function Navbar() {
-    const {pathname} = useLocation()
-
+    const { pathname } = useLocation()
+    const dispatch = useDispatch()
+    const isDarkTheme = useSelector(state => state.theme.isThemeDark)
+    console.log(isDarkTheme)
     const menuItems = [
         {
             icon: <HomeOutlined />,
@@ -46,10 +50,10 @@ function Navbar() {
             <div>
                 <Link to='/'>
                     <Avatar src='./src/images/logo.png' size={50} />
-                    <Typography.Title 
-                    level={5}
-                        style={{display: "inline"}}
-                        >
+                    <Typography.Title
+                        level={5}
+                        style={{ display: "inline" }}
+                    >
                         Crypto Land
                     </Typography.Title>
                 </Link>
@@ -61,7 +65,12 @@ function Navbar() {
                     selectedKeys={[pathname]}
                 />
             </div>
-            <MoonOutlined style={{fontSize: 20}}/>
+            <div onClick={() => dispatch(changeTheme())} style={{ cursor: 'pointer' }}>
+                {isDarkTheme ?
+                    <SunOutlined style={{ fontSize: 20 }} />
+                    : <MoonOutlined style={{ fontSize: 20 }} />
+                }
+            </div>
         </Flex>
     )
 }

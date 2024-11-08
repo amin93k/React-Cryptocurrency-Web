@@ -4,9 +4,11 @@ import { Navbar } from './components'
 import { useRoutes } from 'react-router-dom'
 import routes from './routes.jsx'
 import { Layout, ConfigProvider } from 'antd'
+import { useSelector } from 'react-redux'
 
 function App() {
     const router = useRoutes(routes)
+    const isThemeDark = useSelector(state => state.theme.isThemeDark)
     const { Header, Content, Footer, Sider } = Layout;
 
     return (
@@ -18,7 +20,10 @@ function App() {
                     },
                 },
                 token: {
-                    fontFamily: 'DM Sans'
+                    fontFamily: 'DM Sans',
+                    colorPrimary: isThemeDark ? '#1890ff' : '#1DA57A',
+                    colorBgBase: isThemeDark ? '#141414' : '#ffffff',
+                    colorTextBase: isThemeDark ? '#ffffff' : '#000000'
                 }
             }}
         >
