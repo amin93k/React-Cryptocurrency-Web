@@ -5,6 +5,7 @@ import { useRoutes } from 'react-router-dom'
 import routes from './routes.jsx'
 import { Layout, ConfigProvider } from 'antd'
 import { useSelector } from 'react-redux'
+import FooterCom from './components/FooterCom.jsx'
 
 function App() {
     const router = useRoutes(routes)
@@ -36,7 +37,7 @@ function App() {
                 </Content>
 
                 <Footer>
-                    footer
+                    <FooterCom />
                 </Footer>
 
             </Layout>

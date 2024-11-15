@@ -16,7 +16,7 @@ function PopularCoins({ coins }) {
                     <Col key={index} xs={24} sm={12} lg={6}>
                         <Card className='coin-card'>
                             <Flex align='center' justify='space-between' style={{ marginBottom: 8 }}>
-                                <Space size="middle">
+                                <Space>
                                     <Avatar src={imageUrl} />
                                     <Title level={4} style={{ marginBottom: 0 }}>
                                         {coin.CoinInfo.FullName}

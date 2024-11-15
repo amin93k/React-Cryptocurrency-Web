@@ -22,3 +22,26 @@
 .link:hover {
   color: #6de39a
 }
+
+footer {
+  position: relative;
+  margin-top: 60px;
+  overflow: hidden;
+  z-index: 10;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footerBlurEffect {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: -46.54px;
+  bottom: -30px;
+  z-index: -10;
+
+  background: rgba(185, 133, 225, 0.4);
+  filter: blur(90px);
+  border-radius: 207px;
+  transform: rotate(32.69deg);
+
+}
