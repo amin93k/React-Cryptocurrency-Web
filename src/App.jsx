@@ -16,13 +16,12 @@ function App() {
             theme={{
                 components: {
                     Layout: {
-                        headerBg: "#fff"
+                        headerBg: isThemeDark ? '#0d032b' : '#fcfcfd'
                     },
                 },
                 token: {
                     fontFamily: 'DM Sans',
-                    colorPrimary: isThemeDark ? '#1890ff' : '#1DA57A',
-                    colorBgBase: isThemeDark ? '#141414' : '#ffffff',
+                    colorBgBase: isThemeDark ? '#0d032b' : '#FCFCFD',
                     colorTextBase: isThemeDark ? '#ffffff' : '#000000'
                 }
             }}

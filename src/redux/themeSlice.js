@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const themeSlice = createSlice({
     name: "theme",
     initialState: {
-        isThemeDark: true
+        isThemeDark: false
     },
     reducers: {
         changeTheme: state => {

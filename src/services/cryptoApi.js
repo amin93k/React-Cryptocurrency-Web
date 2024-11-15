@@ -9,7 +9,7 @@ export const cryptoApiSlice = createApi({
         getCrypto: builder.query({
             query: ({url, params }) => ({
                 url,
-                params: { ...params },
+                params: params ? { ...params } : null,
                 headers: {
                     Authorization: `Apikey b599fb25e2956d71e0e8cec0725d9a2076cfe82210ec012f2dec57574b0b6fad`
                 }

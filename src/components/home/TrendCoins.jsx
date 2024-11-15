@@ -11,10 +11,11 @@ function TrendCoinsTable({ coins }) {
                 <Typography.Title level={2}>
                     Market Trend
                 </Typography.Title>
-                <Link to='/Cryptocurrencies' className='link'>
-                    See All cryptocurrencies
+                <Link to='/cryptocurrencies' className='link'>
+                    See All Cryptocurrencies
                 </Link>
             </Flex>
+
             <CoinsTable coins={coins}/>
         </div>
     )

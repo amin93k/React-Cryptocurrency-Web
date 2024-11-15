@@ -38,7 +38,6 @@
 }
 
 .coin-card {
-    background: #FCFCFD;
     box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.2);
     border-radius: 16px;
 }
@@ -47,3 +46,35 @@
     margin-top: 20px;
 }
 
+.news-card {
+    padding: 0;
+    border-radius: 1rem;
+    box-shadow: 0px 64px 64px -48px rgba(15, 15, 15, 0.2);
+}
+.news-card__cover {
+    flex: 0 0 30%;
+    border-radius: 1rem 0 0 1rem;
+    overflow: hidden;
+}
+
+.news-card__cover--img {
+    width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.news-card__content {
+    padding: 9px 12px;
+}
+
+.news-card__content--description {
+    margin-top: auto;
+}
+
+.news-card__content--source {
+    margin-top: auto;
+}
+
+.news-card__content--time {
+    opacity: 0.7;
+}

@@ -9,7 +9,7 @@ function Navbar() {
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const isDarkTheme = useSelector(state => state.theme.isThemeDark)
-    console.log(isDarkTheme)
+
     const menuItems = [
         {
             icon: <HomeOutlined />,

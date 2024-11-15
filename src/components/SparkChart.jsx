@@ -1,7 +1,8 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useGetCryptoQuery } from '../services/cryptoApi';
 import { Spin } from 'antd';
+import convertTimestamp from '../utils/convertTimestamp';
 
 function SparkChart({ coinName, getType, dataLength }) {
     const params = {
@@ -22,28 +23,23 @@ function SparkChart({ coinName, getType, dataLength }) {
         return <span >Opps ocurred error!</span>;
     }
 
-    const convertTimestamp = (timestamp) => {
-        // Convert to milliseconds  
-        const date = new Date(timestamp * 1000)
-        return date.toLocaleString('en-US',
-            { hour: '2-digit', minute: '2-digit', hour12: false })
-    }
+    const firstClosePrise = coinData?.Data.Data[0].close
+    const lastClosePrise = coinData?.Data.Data[dataLength - 1].close
+    const isPriceIncrease = (lastClosePrise - firstClosePrise) > 0
 
-    const isPriceIncrease = (coinData?.Data.Data[dataLength - 1].close - coinData?.Data.Data[0].close) > 0
+    let coinMinPrice = coinData?.Data.Data[0].close
+    let coinMaxPrice = coinData?.Data.Data[0].close
 
-    let dataMinPrice = coinData?.Data.Data[0].close
-    let dataMaxPrice = coinData?.Data.Data[0].close
-
-    const chartData = coinData?.Data.Data.map(hourData => {
+    const chartDataList = coinData?.Data.Data.map(hourData => {
         const closePrice = hourData.close
-        if (closePrice > dataMaxPrice) {
-            dataMaxPrice = closePrice
+        if (closePrice > coinMaxPrice) {
+            coinMaxPrice = closePrice
         }
-        if (closePrice < dataMinPrice) {
-            dataMinPrice = closePrice
+        if (closePrice < coinMinPrice) {
+            coinMinPrice = closePrice
         }
         return {
-            "time": convertTimestamp(hourData.time),
+            "time": convertTimestamp(hourData.time, 'chart'),
             "$": closePrice
         }
     });
@@ -51,23 +47,23 @@ function SparkChart({ coinName, getType, dataLength }) {
     return (
         <ResponsiveContainer width="100%" height={40}>
             <AreaChart
-                data={chartData}
+                data={chartDataList}
                 margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
                 <defs>
 
                     <linearGradient id="positiveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: '#82ca9d', stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: '#d0f0c0', stopOpacity: 1 }} />
+                        <stop offset="0%" style={{ stopColor: '#58BD7D', stopOpacity: 0.6 }} />
+                        <stop offset="100%" style={{ stopColor: '#ACDEBE', stopOpacity: 0.3 }} />
                     </linearGradient>
 
                     <linearGradient id="negativeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: '#ff7373', stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: '#ffaaaa', stopOpacity: 1 }} />
+                        <stop offset="0%" style={{ stopColor: '#D33535', stopOpacity: 0.6 }} />
+                        <stop offset="100%" style={{ stopColor: '#E99A9A', stopOpacity: 0.3 }} />
                     </linearGradient>
                 </defs>
                 <XAxis hide dataKey='time' />
-                <YAxis hide domain={[dataMinPrice, dataMaxPrice]} />
+                <YAxis hide domain={[coinMinPrice, coinMaxPrice]} />
                 <Tooltip
                     itemStyle={{ color: '#000' }}
                     separator=''
@@ -77,7 +73,7 @@ function SparkChart({ coinName, getType, dataLength }) {
                     dataKey="$"
                     stroke={isPriceIncrease ? '#82ca9d' : '#ff7373'}
                     fill={isPriceIncrease ? 'url(#positiveGradient)' : 'url(#negativeGradient)'}
-                    strokeWidth={2}
+                    strokeWidth={1}
                 />
             </AreaChart>
         </ResponsiveContainer>
