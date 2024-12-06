@@ -1,3 +1,4 @@
+// styles codes in App.css
 import { Flex, Typography, Avatar, Space, Divider } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -6,6 +7,9 @@ import { FacebookFilled, InstagramFilled, LinkedinFilled, TwitterOutlined } from
 const { Title, Text } = Typography
 
 function FooterCom() {
+  const date = new Date()
+  const thisYear = date.getFullYear()
+
   return (
     <>
       <Flex gap={80}>
@@ -27,7 +31,7 @@ function FooterCom() {
           </Space>
         </div>
         <div>
-          <h3>Page</h3>
+          <h3>Quick Access</h3>
           <Flex vertical gap={10}>
             <Link to='/cryptocurrencies'>
               <Text>Cryptocurrencies</Text>
@@ -44,7 +48,7 @@ function FooterCom() {
 
       <Divider />
       <Text type='secondary'>
-        Copyright @ 2023 Company
+        {`Copyright @ ${thisYear} By Amin KusheshVatan`}
       </Text>
       <div className='footerBlurEffect'></div>
     </>

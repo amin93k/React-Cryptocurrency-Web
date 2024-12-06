@@ -10,7 +10,7 @@ function PopularCoins({ coins }) {
             {coins.map((coin, index) => {
                 const imageUrl = `https://www.cryptocompare.com/${coin.CoinInfo.ImageUrl}`
                 const isPriceIncrease = coin.RAW.USD.CHANGEPCT24HOUR > 0
-                const priceFontSize = coin.DISPLAY.USD.PRICE.length > 11 ? 18 : 20
+                const priceFontSize = coin.DISPLAY.USD.PRICE.length > 11 ? 16 : 18
 
                 return (
                     <Col key={index} xs={24} sm={12} lg={6}>

@@ -19,7 +19,7 @@ function HomePage() {
 
     if (isLoading) return <Spin size='large' fullscreen={true}/>;
     if (error) return <div>Error fetching data</div>;
-    console.log(data)
+ 
     return (
         <>
             <HomeHead />

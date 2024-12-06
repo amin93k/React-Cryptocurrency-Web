@@ -1,8 +1,12 @@
 import React from 'react'
 import { Table, Space, Avatar } from 'antd'
 import SparkChart from './SparkChart'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-function CoinsTable({coins}) {
+function CoinsTable({ coins }) {
+    const isDark = useSelector(state => state.theme.isThemeDark)
+    const linkColor = isDark ? "#fff" : "#000"
 
     const coinsSource = coins.map((coin, index) => {
 
@@ -36,11 +40,16 @@ function CoinsTable({coins}) {
             key: 'name',
             render: (_, { name: { fullName, name, imageUrl } }) => {
                 return (
-                    <Space size='middle'>
-                        <Avatar src={imageUrl} />
-                        <span >{fullName}</span>
-                        <span >{name}</span>
-                    </Space>
+                    <Link
+                        to={`/Crypto/${name}`}
+                        style={{ color: linkColor }}
+                    >
+                        <Space size='middle'>
+                            <Avatar src={imageUrl} />
+                            <span >{fullName}</span>
+                            <span >{name}</span>
+                        </Space>
+                    </Link>
                 )
             }
         },
@@ -59,6 +68,7 @@ function CoinsTable({coins}) {
                     return <span>-</span>
                 }
                 else {
+                    // Does not exist crypto info 
                     const color = changePtc24H[0] === '-' ? "#f5222d" : "#52c41a"
                     return (
                         <span style={{ color: color }}>

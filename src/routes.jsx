@@ -15,7 +15,7 @@ const routes = [
         element: <Exchange />,
     },
     {
-        path: "/crypto/:coinId",
+        path: "/crypto/:coinName",
         element: <CryptoDetails />,
     },
     {
