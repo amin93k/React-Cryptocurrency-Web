@@ -9,8 +9,6 @@ function Navbar() {
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const isDarkTheme = useSelector(state => state.theme.isThemeDark)
-    const { useBreakpoint } = Grid
-    const screens = useBreakpoint()
 
     const menuItems = [
         {
@@ -60,15 +58,15 @@ function Navbar() {
                     </Typography.Title>
                 </Link>
             </div>
-            {(!screens.sm && !screens.xs) &&
-                <div>
-                    <Menu
-                        items={menuItems}
-                        mode='horizontal'
-                        selectedKeys={[pathname]}
-                    />
-                </div>
-            }
+
+            <div className='menu'>
+                <Menu
+                    items={menuItems}
+                    mode='horizontal'
+                    selectedKeys={[pathname]}
+                />
+            </div>
+
             <div onClick={() => dispatch(changeTheme())} style={{ cursor: 'pointer' }}>
                 {isDarkTheme ?
                     <SunOutlined style={{ fontSize: 20 }} />
