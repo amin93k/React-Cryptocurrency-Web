@@ -10,7 +10,7 @@ import LastNews from './LastNews';
 
 function HomePage() {
     const params = { 
-        limit: 10,
+        limit: 100,
         tsym: 'USD'
     }
     const url = 'top/totalvolfull'

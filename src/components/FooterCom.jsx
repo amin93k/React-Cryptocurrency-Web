@@ -33,13 +33,13 @@ function FooterCom() {
         <div>
           <h3>Quick Access</h3>
           <Flex vertical gap={10}>
-            <Link to='/cryptocurrencies'>
+            <Link>
               <Text>Cryptocurrencies</Text>
             </Link>
-            <Link to='/exchanges'>
+            <Link>
               <Text>Exchanges</Text>
             </Link>
-            <Link to='/news'>
+            <Link>
               <Text>News</Text>
             </Link>
           </Flex>

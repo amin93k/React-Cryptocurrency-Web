@@ -25,7 +25,7 @@ function Navbar() {
             icon: <FundOutlined />,
             key: '/cryptocurrencies',
             label:
-                <Link to='/cryptocurrencies'>
+                <Link >
                     Cryptocurrencies
                 </Link>
         },
@@ -33,7 +33,7 @@ function Navbar() {
             icon: <MoneyCollectOutlined />,
             key: '/exchanges',
             label:
-                <Link to='/exchanges'>
+                <Link >
                     Exchanges
                 </Link>
         },
@@ -41,7 +41,7 @@ function Navbar() {
             icon: <BoldOutlined />,
             key: '/news',
             label:
-                <Link to='/news'>
+                <Link>
                     News
                 </Link>
         },

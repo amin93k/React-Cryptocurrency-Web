@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Space, Avatar } from 'antd'
+import { Table, Space, Avatar, Grid } from 'antd'
 import SparkChart from './SparkChart'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 function CoinsTable({ coins }) {
     const isDark = useSelector(state => state.theme.isThemeDark)
     const linkColor = isDark ? "#fff" : "#000"
+    const { useBreakpoint } = Grid
+    const screens = useBreakpoint()
 
     const coinsSource = coins.map((coin, index) => {
 
@@ -109,7 +111,11 @@ function CoinsTable({ coins }) {
         <Table
             columns={columns}
             dataSource={coinsSource}
-            pagination={false}
+            pagination={{
+                showSizeChanger: false,
+                size: `${screens.xs && 'small'}`,
+                position: ['bottomCenter']
+            }}
             className='trend-table'
             scroll={{ x: 'max-content' }}
         />
