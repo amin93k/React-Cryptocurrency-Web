@@ -5,7 +5,6 @@
 .head__title {
     position: relative;
     z-index: 10;
-    flex-basis: 40%;
 }
 
 .head__title--areola {
@@ -23,6 +22,9 @@
 .head__image {
     position: relative;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .head__image--areola {
@@ -79,4 +81,33 @@
 
 .news-card__content--time {
     opacity: 0.7;
+}
+
+
+
+
+@media (max-width: 576px) {
+    .head__image img{
+        width: 330px !important
+    }
+    .head__image--areola {
+        width: 250px;
+        height: 230px;
+        left: 0;
+    }
+    h1{
+        font-size: 24px !important;
+    }
+    .news-card__cover--img {
+        object-fit: cover;
+    }
+    .news-card__content--time {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768) {
+    .head__image img{
+        width: 380px !important
+    }
 }

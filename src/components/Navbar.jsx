@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Typography, Avatar, Flex } from "antd"
+import { Menu, Typography, Avatar, Flex, Grid } from "antd"
 import { HomeOutlined, MoneyCollectOutlined, FundOutlined, BoldOutlined, MoonOutlined, SunOutlined, } from '@ant-design/icons'
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,6 +9,8 @@ function Navbar() {
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const isDarkTheme = useSelector(state => state.theme.isThemeDark)
+    const { useBreakpoint } = Grid
+    const screens = useBreakpoint()
 
     const menuItems = [
         {
@@ -49,7 +51,7 @@ function Navbar() {
         <Flex justify='space-between' >
             <div>
                 <Link to='/'>
-                    <Avatar src='./src/images/logo.png' size={50} />
+                    <Avatar src='./src/images/logo.png' size={{ sm: 0, md: 50, lg: 50, xl: 50 }} />
                     <Typography.Title
                         level={5}
                         style={{ display: "inline" }}
@@ -58,13 +60,15 @@ function Navbar() {
                     </Typography.Title>
                 </Link>
             </div>
-            <div>
-                <Menu
-                    items={menuItems}
-                    mode='horizontal'
-                    selectedKeys={[pathname]}
-                />
-            </div>
+            {(!screens.sm && !screens.xs) &&
+                <div>
+                    <Menu
+                        items={menuItems}
+                        mode='horizontal'
+                        selectedKeys={[pathname]}
+                    />
+                </div>
+            }
             <div onClick={() => dispatch(changeTheme())} style={{ cursor: 'pointer' }}>
                 {isDarkTheme ?
                     <SunOutlined style={{ fontSize: 20 }} />
