@@ -15,7 +15,7 @@ function FooterCom() {
       <Flex gap={80}>
         <div>
           <div>
-            <Avatar src='./src/images/logo.png' size={50} />
+            <Avatar src='/images/logo.png' size={50} />
             <Title
               level={5}
               style={{ display: "inline" }}

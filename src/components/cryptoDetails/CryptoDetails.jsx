@@ -61,7 +61,6 @@ function CryptoDetails() {
             theme
         }
     }
-    console.log(options)
 
     const series = [
         {

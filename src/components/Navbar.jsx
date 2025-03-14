@@ -49,7 +49,7 @@ function Navbar() {
         <Flex justify='space-between' >
             <div>
                 <Link to='/'>
-                    <Avatar src='./src/images/logo.png' size={{ sm: 0, md: 50, lg: 50, xl: 50 }} />
+                    <Avatar src='/images/logo.png' size={{ sm: 0, md: 50, lg: 50, xl: 50 }} />
                     <Typography.Title
                         level={5}
                         style={{ display: "inline" }}

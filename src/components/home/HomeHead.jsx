@@ -21,7 +21,7 @@ function HomeHead() {
       <Col xs={24} sm={24} md={12}>
         <div className='head__image'>
           <span className='head__image--areola'></span>
-          <img src="./src/images/pngwing 5.png" alt="coins" />
+          <img src="/images/pngwing 5.png" alt="coins" />
         </div>
       </Col>
     </Row>
