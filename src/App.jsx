@@ -6,19 +6,25 @@ import routes from './routes.jsx'
 import { Layout, ConfigProvider } from 'antd'
 import { useSelector } from 'react-redux'
 import FooterCom from './components/FooterCom.jsx'
+import { Grid } from 'antd'
+
+const { useBreakpoint } = Grid
+const { Header, Content, Footer } = Layout;
 
 function App() {
     const router = useRoutes(routes)
     const isThemeDark = useSelector(state => state.theme.isThemeDark)
-    const { Header, Content, Footer, Sider } = Layout;
+    const {xs: isMobile} = useBreakpoint()
 
     return (
         <ConfigProvider
             theme={{
                 components: {
                     Layout: {
-                        headerBg: isThemeDark ? '#0d032b' : '#fcfcfd'
-                    },
+                        headerBg: isThemeDark ? '#0d032b' : '#fcfcfd', 
+                        headerPadding: "0 15px",
+                        footerPadding: "20px 30px"
+                    }
                 },
                 token: {
                     fontFamily: 'DM Sans',
@@ -32,7 +38,7 @@ function App() {
                     <Navbar />
                 </Header>
 
-                <Content className='content'>
+                <Content style={{padding: isMobile ? "16px 16px" : "16px 50px"}}>
                     {router}
                 </Content>
 

@@ -10,11 +10,6 @@
   overflow-y: auto;
 }
 
-.content {
-  padding-inline: 50px;
-  padding-block: 1rem;
-}
-
 .link {
   color: #54c880
 }

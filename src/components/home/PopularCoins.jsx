@@ -14,13 +14,19 @@ function PopularCoins({ coins }) {
                 const imageUrl = `https://www.cryptocompare.com/${coin.CoinInfo.ImageUrl}`
                 const isPriceIncrease = coin.RAW.USD.CHANGEPCT24HOUR > 0
                 const priceFontSize = priceInfo.PRICE.length > 11 ? 16 : 18
-console.log(coinInfo)
+
                 return (
                     <Col key={index} xs={24} sm={12} lg={6}>
                         <Link to={`/Crypto/${coinInfo.Name}`}>
                             <Card className='coin-card'>
-                                <Flex align='center' justify='space-between' style={{ marginBottom: 8 }}>
-                                    <Space>
+                                <Flex
+                                    align='center'
+                                    justify='space-between'
+                                    wrap="wrap"
+                                    gap="4px"
+                                    style={{ marginBottom: 8 }}
+                                >
+                                    <Space size={2}>
                                         <Avatar src={imageUrl} />
                                         <Title level={4} style={{ marginBottom: 0 }}>
                                             {coinInfo.FullName}
@@ -31,14 +37,22 @@ console.log(coinInfo)
                                     </Text>
                                 </Flex>
 
-                                <Flex align='center' justify='space-between' style={{ marginBottom: 5 }}>
+                                <Flex
+                                    align='center'
+                                    justify='space-between'
+                                    style={{ marginBottom: 5, whiteSpace: 'nowrap' }}
+                                >
                                     <Space style={{ marginLeft: 10 }}>
-                                        <Text strong={true} style={{ fontSize: priceFontSize }}>
+                                        <Text
+                                            strong={true}
+                                            style={{ fontSize: priceFontSize }}
+                                        >
                                             {priceInfo.PRICE}
                                         </Text>
                                         <Badge
                                             count={`${priceInfo.CHANGEPCT24HOUR}%`}
-                                            color={isPriceIncrease ? 'green' : 'red'} />
+                                            color={isPriceIncrease ? 'green' : 'red'}
+                                        />
                                     </Space>
                                     <Text>
                                         24h

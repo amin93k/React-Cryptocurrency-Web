@@ -1,9 +1,12 @@
-import { Col, Row, Typography } from 'antd'
+import { Col, Grid, Row, Typography } from 'antd'
 import React from 'react'
 
 const { Title, Text } = Typography
+const { useBreakpoint } = Grid
 
 function HomeHead() {
+  const { xs } = useBreakpoint()
+
   return (
     <Row align={'middle'} justify={'center'} gutter={[20, 50]} className='head-wrapper'>
       <Col xs={24} sm={24} md={12}>
@@ -14,7 +17,9 @@ function HomeHead() {
           <Text >
             Here we have provided the price of almost all cryptocurrencies
           </Text>
-          <span className='head__title--areola'></span>
+          {!xs &&
+            <span className='head__title--areola'></span>
+          }
         </div>
       </Col>
 

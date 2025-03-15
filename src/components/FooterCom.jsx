@@ -12,7 +12,7 @@ function FooterCom() {
 
   return (
     <>
-      <Flex gap={80}>
+      <Flex gap={80} wrap="wrap">
         <div>
           <div>
             <Avatar src='/images/logo.png' size={50} />
