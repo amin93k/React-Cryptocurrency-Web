@@ -20,7 +20,7 @@ function LastNews() {
                 <Title level={2}>
                     Latest News
                 </Title>
-                <Link to='/news' className='link'>
+                <Link to='' className='link'>
                     See All News
                 </Link>
             </Flex>
